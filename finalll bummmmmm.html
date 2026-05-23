@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Final ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #ff758c, #ff7eb3, #fad0c4);
+    background-size: 400% 400%;
+    animation: fondoAnimado 10s ease infinite;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .noche {
+    background: linear-gradient(120deg, #000428, #004e92);
+    background-size: 400% 400%;
+    animation: fondoAnimado 10s ease infinite;
+  }
+
+  h1 {
+    margin-top: 40px;
+    font-size: 3rem;
+    animation: glow 2s infinite;
+    cursor: pointer;
+  }
+
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 15px white, 0 0 25px #ff3366; }
+    50% { text-shadow: 0 0 8px white, 0 0 15px #ff3366; }
+  }
+
+  #mensaje {
+    margin-top: 40px;
+    font-size: 2rem;
+    white-space: pre-line;
+    text-shadow: 0 0 10px rgba(0,0,0,0.4);
+  }
+
+  .mini {
+    position: fixed;
+    font-size: 35px;
+    animation: volar 1.8s forwards;
+    pointer-events: none;
+  }
+
+  @keyframes volar {
+    from { opacity: 1; transform: translate(0,0) scale(1); }
+    to { opacity: 0; transform: translate(var(--x), var(--y)) scale(2.5); }
+  }
+
+  #volver {
+    display: inline-block;
+    margin-top: 50px;
+    background: white;
+    color: #ff3366;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(255,255,255,0.7);
+    transition: 0.3s;
+  }
+
+  #volver:hover {
+    background: #ffe6ee;
+    transform: scale(1.1);
+  }
+</style>
+</head>
+
+<body>
+
+<audio id="musica" autoplay loop muted>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7e8e3f3c8e.mp3?filename=romantic-soft-piano-110624.mp3" type="audio/mpeg">
+</audio>
+
+<h1 id="titulo">Nuestro final ❤️</h1>
+
+<div id="mensaje">
+Gracias por estos 2 meses juntos…  
+Lo que siento por vos crece cada día.  
+Este es solo el comienzo.
+</div>
+
+<a id="volver" href="yoo.html">Volver al inicio ❤️</a>
+
+<script>
+  // Activar música
+  document.addEventListener("click", () => {
+    document.getElementById("musica").muted = false;
+  }, { once: true });
+
+  // Modo noche tocando el título
+  document.getElementById("titulo").addEventListener("click", () => {
+    document.body.classList.toggle("noche");
+  });
+
+  // EXPLOSIÓN AUTOMÁTICA APENAS ENTRA A LA PÁGINA
+  function explosion() {
+    const cantidad = 120;
+
+    for (let i = 0; i < cantidad; i++) {
+      let mini = document.createElement("div");
+      mini.classList.add("mini");
+      mini.innerHTML = "💖";
+
+      mini.style.left = window.innerWidth / 2 + "px";
+      mini.style.top = window.innerHeight / 2 + "px";
+
+      const x = (Math.random() - 0.5) * 2500;
+      const y = (Math.random() - 0.5) * 2500;
+
+      mini.style.setProperty("--x", x + "px");
+      mini.style.setProperty("--y", y + "px");
+
+      document.body.appendChild(mini);
+
+      setTimeout(() => mini.remove(), 1800);
+    }
+  }
+
+  // Explosión al entrar
+  setTimeout(explosion, 300);
+
+  // Explosión al tocar el título
+  document.getElementById("titulo").addEventListener("click", explosion);
+</script>
+
+</body>
+</html>
